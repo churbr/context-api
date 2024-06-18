@@ -67,8 +67,13 @@ function App() {
     });
   }
 
+  const ctxValue = {
+    items: shoppingCart.items,
+    addItemsToCart: handleAddItemToCart,
+  };
+
   return (
-    <CartContext.Provider value={{ items: [] }}>
+    <CartContext.Provider value={ctxValue}>
       {/* 
         Always provide the value to the Provider wrapper to avoid error (see below):
         Warning: The `value` prop is required for the `<Context.Provider>`.
