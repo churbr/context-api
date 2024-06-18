@@ -68,7 +68,12 @@ function App() {
   }
 
   return (
-    <CartContext.Provider>
+    <CartContext.Provider value={{ items: [] }}>
+      {/* 
+        Always provide the value to the Provider wrapper to avoid error (see below):
+        Warning: The `value` prop is required for the `<Context.Provider>`.
+        Did you misspell it or forget to pass it?  
+      */}
       <Header
         cart={shoppingCart}
         onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
