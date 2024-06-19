@@ -70,6 +70,7 @@ function App() {
   const ctxValue = {
     items: shoppingCart.items,
     addItemsToCart: handleAddItemToCart,
+    updateCartItemQuantity: handleUpdateCartItemQuantity,
   };
 
   return (
@@ -80,13 +81,16 @@ function App() {
         Did you misspell it or forget to pass it?  
       */}
       <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
+      // cart={shoppingCart}
+      // onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
       />
       <Shop>
         {DUMMY_PRODUCTS.map((product) => (
           <li key={product.id}>
-            <Product {...product} onAddToCart={handleAddItemToCart} />
+            <Product
+              {...product}
+              // onAddToCart={handleAddItemToCart}
+            />
           </li>
         ))}
       </Shop>

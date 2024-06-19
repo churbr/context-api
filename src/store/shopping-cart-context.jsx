@@ -3,6 +3,7 @@ import { createContext } from 'react';
 export const CartContext = createContext({
   items: [],
   addItemsToCart: () => {},
+  updateCartItemQuantity: () => {},
   // Setting the default value here is optional.
   // But why is setting default value here useful?
   // Because you get better auto completion
