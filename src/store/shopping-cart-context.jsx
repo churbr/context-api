@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useReducer } from 'react';
 import { DUMMY_PRODUCTS } from '../dummy-products';
 
 export const CartContext = createContext({
@@ -10,7 +10,26 @@ export const CartContext = createContext({
   // Because you get better auto completion
 });
 
+// This reducer function is defined outside `CartContextProvider`
+// Because this function should not be recreated whenever the component function executes
+// Because it also won't need direct access to any value defined or updated in the component function
+// This reducer function `shoppingCartReducer()` will be called by react after you dispatch a so-called action
+function shoppingCartReducer(state, action) {
+  // ...
+  return state;
+}
+
 export const CartContextProvider = ({ children }) => {
+  const [shoppingCartState, shoppingCartDispatch] = useReducer(
+    shoppingCartReducer,
+    {
+      items: [],
+    }
+  );
+  /**           State            Dispatch
+   * Dispatch: Allows you to dispatch actions that is defined by the useReducer() function
+   **/
+
   const [shoppingCart, setShoppingCart] = useState({
     items: [],
   });
@@ -72,7 +91,7 @@ export const CartContextProvider = ({ children }) => {
   }
 
   const ctxValue = {
-    items: shoppingCart.items,
+    items: shoppingCartState.items,
     addItemsToCart: handleAddItemToCart,
     updateCartItemQuantity: handleUpdateCartItemQuantity,
   };
